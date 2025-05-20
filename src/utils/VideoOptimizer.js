@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useVideoLoading } from '../context/VideoLoadingContext';
 
 /**
  * Custom hook for optimized video background loading and playback
@@ -18,14 +19,22 @@ export const useOptimizedVideo = ({
   autoplay = true, 
   loop = true, 
   muted = true, 
-  preload = 'none' 
+  preload = 'none',
+  isPriority = false // Flag to identify the first video to load
 }) => {
   const videoRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const observerRef = useRef(null);
+  const { firstVideoLoaded, setFirstVideoLoaded } = useVideoLoading();
 
   useEffect(() => {
+    // If this is not the priority video and the first video hasn't loaded yet,
+    // don't set up intersection observer or start loading
+    if (!isPriority && !firstVideoLoaded) {
+      return; // Skip loading until first video is ready
+    }
+
     // Create intersection observer to detect when video enters viewport
     observerRef.current = new IntersectionObserver(
       (entries) => {
@@ -72,11 +81,17 @@ export const useOptimizedVideo = ({
         observerRef.current.disconnect();
       }
     };
-  }, [src, autoplay]);
+  }, [src, autoplay, isPriority, firstVideoLoaded]);
 
   // Handle video load event
   const handleLoadedData = () => {
     setIsLoaded(true);
+    
+    // If this is the priority video (One.js), notify the system it's loaded
+    if (isPriority) {
+      setFirstVideoLoaded(true);
+      console.log('Priority video loaded, other videos can now start loading');
+    }
   };
 
   return {
@@ -89,7 +104,7 @@ export const useOptimizedVideo = ({
       muted,
       loop,
       playsInline: true,
-      preload,
+      preload: isPriority ? 'auto' : preload, // Priority video gets preload='auto'
       onLoadedData: handleLoadedData,
       className: `video-background ${!isLoaded ? 'opacity-0' : 'opacity-100'}`,
       // Use content-visibility for rendering optimization
@@ -112,14 +127,16 @@ export const OptimizedBackgroundVideo = ({
   videoStyle = {},
   autoplay = true,
   loop = true,
-  muted = true 
+  muted = true,
+  isPriority = false // Added priority prop
 }) => {
   const { videoRef, isLoaded, videoProps } = useOptimizedVideo({
     src,
     poster,
     autoplay,
     loop,
-    muted
+    muted,
+    isPriority
   });
 
   return (

@@ -16,6 +16,7 @@ const One = () => {
             autoplay={true}
             loop={true}
             muted={true}
+            isPriority={true} // Mark this video as priority
             containerStyle={{
               height: '100%',
               width: '100%'

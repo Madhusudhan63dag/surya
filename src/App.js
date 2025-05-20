@@ -7,20 +7,23 @@ import Three from './components/Three';
 import Four from './components/Four';
 import Five from './components/Five';
 import Six from './components/Six';
+import { VideoLoadingProvider } from './context/VideoLoadingContext';
 
 
 function App() {
   return (
-    <div className="App overflow-hidden">
-      <Navbar />
-      <One />
-      <Two />
-      <Three />
-      <Four />
-      <Five />
-      <Six />
-      <Footer />
-    </div>
+    <VideoLoadingProvider>
+      <div className="App overflow-hidden">
+        <Navbar />
+        <One />
+        <Two />
+        <Three />
+        <Four />
+        <Five />
+        <Six />
+        <Footer />
+      </div>
+    </VideoLoadingProvider>
   );
 }
 
