@@ -8,6 +8,7 @@ import Four from './components/Four';
 import Five from './components/Five';
 import Six from './components/Six';
 import { VideoLoadingProvider } from './context/VideoLoadingContext';
+import Seven from './components/Seven';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Four />
         <Five />
         <Six />
+        <Seven />
         <Footer />
       </div>
     </VideoLoadingProvider>

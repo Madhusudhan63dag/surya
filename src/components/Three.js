@@ -85,7 +85,7 @@ const Three = () => {
   const animationDuration = videos.length * 20; // 20 seconds per video
 
   return (
-    <div className="h-full">
+    <div id="video-production" className="h-full">
       <div className='flex flex-col h-full'>
         {/* heading - responsive layout */}
         <div>

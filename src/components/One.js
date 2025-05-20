@@ -7,7 +7,7 @@ import headerPoster from '../assets/header-poster.png'
 const One = () => {
   return (
     <div className='overflow-hidden'>  
-      <div>
+      <div id='home'>
         <h1 className='text-5xl sm:text-5xl md:text-6xl lg:text-[7rem] relative bottom-0 lg:-bottom-2 md:-bottom-4 font-bold text-[#f26522] mt-0 pt-0 px-4 text-left'>SURYA MEDIA</h1>
         <div className='h-[30vh] sm:h-[40vh] md:h-[80vh] w-screen'>
           <OptimizedBackgroundVideo

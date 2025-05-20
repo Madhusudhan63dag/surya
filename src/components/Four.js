@@ -4,28 +4,12 @@ import photo2 from '../assets/photography/photo2.webp'
 import photo3 from '../assets/photography/photo3.jpeg'
 import photo4 from '../assets/photography/photo4.png'
 import photo5 from '../assets/photography/photo5.jpg'
-
-
-// const Four = () => {
-//   return (
-//     <div className="relative min-h-screen bg-white">
-//       <div className="absolute top-0 left-0 w-full h-full bg-[#f26522]" style={{ clipPath: "polygon(0 0, 100% 0, 0 100%)"}}></div>
-//       <div className="relative z-10 container mx-auto px-4 py-12">
-//         <div>
-
-//         </div>
-//       </div>
-//     </div>
-//   )
-// }
-
-// export default Four
-
 import { useState } from 'react'
+
 
 const Four = () => {
   return (
-    <div className="relative min-h-screen bg-white overflow-hidden">
+    <div id="photography" className="relative min-h-screen bg-white overflow-hidden">
       {/* Diagonal background with orange color */}
       <div className="absolute top-0 left-0 w-full h-full">
         <div className="absolute top-0 left-0 w-full h-full bg-[#f26522]" 

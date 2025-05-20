@@ -21,13 +21,22 @@ const Navbar = () => {
 
   // Professional button style using website's color scheme
   const contactBtnClass = scrolled
-    ? "ml-4 inline-flex items-center px-6 py-2 border border-transparent text-base font-semibold rounded-2xl text-white bg-[#f26522] shadow-md hover:bg-[#e45511] transition-colors duration-300"
-    : "ml-4 inline-flex items-center px-6 py-2 border border-transparent text-base font-semibold rounded-2xl text-[#002E62] bg-white shadow-md hover:bg-gray-100 transition-colors duration-300";
+    ? "ml-4 cursor-pointer inline-flex items-center px-6 py-2 border border-transparent text-base font-semibold rounded-2xl text-white bg-[#f26522] shadow-md hover:bg-[#e45511] transition-colors duration-300"
+    : "ml-4 cursor-pointer inline-flex items-center px-6 py-2 border border-transparent text-base font-semibold rounded-2xl text-[#002E62] bg-white shadow-md hover:bg-gray-100 transition-colors duration-300";
 
   // Mobile menu button style with professional colors
   const mobileContactBtnClass = scrolled
     ? "block px-3 py-2 font-semibold text-white bg-[#002E62] rounded-2xl shadow-md hover:bg-[#003b7f] transition-colors duration-300"
     : "block px-3 py-2 font-semibold text-[#002E62] bg-white rounded-2xl shadow-md hover:bg-gray-100 transition-colors duration-300";
+
+  // Smooth scroll to section function
+  const scrollToSection = (sectionId) => {
+    setIsMenuOpen(false); // Close mobile menu if open
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <nav className={`w-full z-50 transition-all duration-300 ${scrolled ? 'bg-[#002E62] shadow-md py-2' : 'bg-[#002E62] py-4'}`}>
@@ -35,34 +44,34 @@ const Navbar = () => {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <div className="flex-shrink-0"> 
-            <Link className="text-xl font-bold text-gray-800">
+            <a onClick={() => scrollToSection('home')} className="text-xl font-bold text-gray-800 cursor-pointer">
               <img src={logo} alt="Logo" className="w-20" />
-            </Link>
+            </a>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden font-bold md:flex md:items-center md:space-x-6">
-            <h1 className="text-white hover:text-white hover:underline transition-colors duration-300">
+            <a onClick={() => scrollToSection('home')} className="text-white cursor-pointer hover:text-white transition-colors duration-300">
               Home
-            </h1>
-            <h1 className="text-white hover:text-white hover:underline transition-colors duration-300">
+            </a>
+            <a onClick={() => scrollToSection('ugc')} className="text-white cursor-pointer hover:text-white transition-colors duration-300">
               UGC
-            </h1>
-            <h1 className="text-white hover:text-white hover:underline transition-colors duration-300">
+            </a>
+            <a onClick={() => scrollToSection('video-production')} className="text-white cursor-pointer hover:text-white transition-colors duration-300">
               Video Production
-            </h1>
-            <h1 className="text-white hover:text-white hover:underline transition-colors duration-300">
+            </a>
+            <a onClick={() => scrollToSection('photography')} className="text-white cursor-pointer hover:text-white transition-colors duration-300">
               Photography
-            </h1>
-            <h1 className="text-white hover:text-white hover:underline transition-colors duration-300">
+            </a>
+            <a onClick={() => scrollToSection('digital-marketing')} className="text-white cursor-pointer hover:text-white transition-colors duration-300">
               Digital Marketing
-            </h1>
-            <h1 className="text-white hover:text-white hover:underline transition-colors duration-300">
+            </a>
+            <a onClick={() => scrollToSection('website-technology')} className="text-white cursor-pointer hover:text-white transition-colors duration-300">
               Website & Technology
-            </h1>
-            <h1 className={contactBtnClass}>
+            </a>
+            <a onClick={() => scrollToSection('contact-us')} className={contactBtnClass}>
               Contact Us
-            </h1>
+            </a>
           </div>
 
           {/* Mobile menu button */}
@@ -91,27 +100,27 @@ const Navbar = () => {
       {/* Mobile menu */}
       <div className={`${isMenuOpen ? 'block' : 'hidden'} md:hidden bg-[#f26522] shadow-lg`}>
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-          <h1 className="block px-3 py-2 text-white hover:text-white hover:bg-gray-50 rounded-md transition-colors duration-300">
+          <div onClick={() => scrollToSection('home')} className="block px-3 py-2 text-white hover:text-white hover:bg-gray-50 rounded-md transition-colors duration-300 cursor-pointer">
             Home
-          </h1>
-          <h1 className="block px-3 py-2 text-white hover:text-white hover:bg-gray-50 rounded-md transition-colors duration-300">
+          </div>
+          <div onClick={() => scrollToSection('ugc')} className="block px-3 py-2 text-white hover:text-white hover:bg-gray-50 rounded-md transition-colors duration-300 cursor-pointer">
             UGC
-          </h1>
-          <h1 className="block px-3 py-2 text-white hover:text-white hover:bg-gray-50 rounded-md transition-colors duration-300">
+          </div>
+          <div onClick={() => scrollToSection('video-production')} className="block px-3 py-2 text-white hover:text-white hover:bg-gray-50 rounded-md transition-colors duration-300 cursor-pointer">
             Video Production
-          </h1>
-          <h1 className="block px-3 py-2 text-white hover:text-white hover:bg-gray-50 rounded-md transition-colors duration-300">
+          </div>
+          <div onClick={() => scrollToSection('photography')} className="block px-3 py-2 text-white hover:text-white hover:bg-gray-50 rounded-md transition-colors duration-300 cursor-pointer">
             Photography
-          </h1>
-          <h1 className="block px-3 py-2 text-white hover:text-white hover:bg-gray-50 rounded-md transition-colors duration-300">
+          </div>
+          <div onClick={() => scrollToSection('digital-marketing')} className="block px-3 py-2 text-white hover:text-white hover:bg-gray-50 rounded-md transition-colors duration-300 cursor-pointer">
             Digital Marketing
-          </h1>
-          <h1 className="block px-3 py-2 text-white hover:text-white hover:bg-gray-50 rounded-md transition-colors duration-300">
+          </div>
+          <div onClick={() => scrollToSection('website-technology')} className="block px-3 py-2 text-white hover:text-white hover:bg-gray-50 rounded-md transition-colors duration-300 cursor-pointer">
             Website & Technology
-          </h1>
-          <h1 className={mobileContactBtnClass}>
+          </div>
+          <div onClick={() => scrollToSection('contact-us')} className={`${mobileContactBtnClass} cursor-pointer`}>
             Contact Us
-          </h1>
+          </div>
         </div>
       </div>
     </nav>
