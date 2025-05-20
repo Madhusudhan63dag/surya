@@ -19,14 +19,24 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Professional button style using website's color scheme
+  const contactBtnClass = scrolled
+    ? "ml-4 inline-flex items-center px-6 py-2 border border-transparent text-base font-semibold rounded-2xl text-white bg-[#f26522] shadow-md hover:bg-[#e45511] transition-colors duration-300"
+    : "ml-4 inline-flex items-center px-6 py-2 border border-transparent text-base font-semibold rounded-2xl text-[#002E62] bg-white shadow-md hover:bg-gray-100 transition-colors duration-300";
+
+  // Mobile menu button style with professional colors
+  const mobileContactBtnClass = scrolled
+    ? "block px-3 py-2 font-semibold text-white bg-[#002E62] rounded-2xl shadow-md hover:bg-[#003b7f] transition-colors duration-300"
+    : "block px-3 py-2 font-semibold text-[#002E62] bg-white rounded-2xl shadow-md hover:bg-gray-100 transition-colors duration-300";
+
   return (
-    <nav className={`w-full z-50 transition-all duration-300 ${scrolled ? 'bg-[#f26522] shadow-md py-2' : 'bg-[#f26522] py-4'}`}>
+    <nav className={`w-full z-50 transition-all duration-300 ${scrolled ? 'bg-[#002E62] shadow-md py-2' : 'bg-[#002E62] py-4'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           {/* Logo */}
           <div className="flex-shrink-0"> 
-            <Link  className="text-xl font-bold text-gray-800">
-              <img src={logo} alt="Logo" className="h-20" />
+            <Link className="text-xl font-bold text-gray-800">
+              <img src={logo} alt="Logo" className="w-20" />
             </Link>
           </div>
 
@@ -50,7 +60,7 @@ const Navbar = () => {
             <h1 className="text-white hover:text-white hover:underline transition-colors duration-300">
               Website & Technology
             </h1>
-            <h1 className="ml-4 inline-flex items-center px-6 py-2 border border-transparent text-base font-medium rounded-2xl text-white bg-[#2c1a47] transition-colors duration-300">
+            <h1 className={contactBtnClass}>
               Contact Us
             </h1>
           </div>
@@ -99,7 +109,7 @@ const Navbar = () => {
           <h1 className="block px-3 py-2 text-white hover:text-white hover:bg-gray-50 rounded-md transition-colors duration-300">
             Website & Technology
           </h1>
-          <h1 className="block px-3 py-2 text-white bg-[#2c1a47] rounded-2xl transition-colors duration-300">
+          <h1 className={mobileContactBtnClass}>
             Contact Us
           </h1>
         </div>
