@@ -12,16 +12,17 @@ import video9 from '../assets/video/video9.mp4'
 import { OptimizedBackgroundVideo } from '../utils/VideoOptimizer'
 
 // Import poster images for videos
-import mainPoster from '../assets/video/main-poster.png'
-import video1Poster from '../assets/video/video1-poster.png'
-import video2Poster from '../assets/video/video2-poster.png'
-import video3Poster from '../assets/video/video3-poster.png'
-import video4Poster from '../assets/video/video4-poster.png'
-import video5Poster from '../assets/video/video5-poster.png'
-import video6Poster from '../assets/video/video6-poster.png'
-import video7Poster from '../assets/video/video7-poster.png'
-import video8Poster from '../assets/video/video8-poster.png'
-import video9Poster from '../assets/video/video9-poster.png'
+import mainPoster from '../assets/video/main-poster.jpeg'
+import video1Poster from '../assets/video/video1-poster.jpeg'
+import video2Poster from '../assets/video/video2-poster.jpeg'
+import video3Poster from '../assets/video/video3-poster.jpeg'
+import video4Poster from '../assets/video/video4-poster.jpeg'
+import video5Poster from '../assets/video/video5-poster.jpeg'
+import video6Poster from '../assets/video/video6-poster.jpeg'
+import video7Poster from '../assets/video/video7-poster.jpeg'
+import video8Poster from '../assets/video/video8-poster.jpeg'
+import video9Poster from '../assets/video/video9-poster.jpeg'
+
 
 const Three = () => {
   const sliderRef = useRef(null);
