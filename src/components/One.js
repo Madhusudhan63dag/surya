@@ -33,7 +33,7 @@ const One = () => {
       <div id='home'>
         <h1 className='text-5xl sm:text-5xl md:text-6xl lg:text-[7rem] relative bottom-0 lg:-bottom-2 md:-bottom-4 font-bold text-[#2566b0] mt-0 pt-0 py-5 md:py-0 px-4 text-left'>SURYA MEDIA</h1>
         <div className='h-[70vh] sm:h-[40vh] md:h-[80vh] w-screen relative'>
-          <div className='absolute z-10 inset-0 bg-black opacity-20'></div>
+          <div className='absolute z-10 inset-0 bg-transparent  md:bg-black opacity-20'></div>
           {videoSrc && (
             <OptimizedBackgroundVideo
               src={videoSrc}

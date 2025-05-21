@@ -112,7 +112,7 @@ const Seven = () => {
                       value={formData.name}
                       onChange={handleChange}
                       className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#002E62]"
-                      placeholder="John Doe"
+                      placeholder="Name"
                       required
                     />
                   </div>
@@ -141,7 +141,7 @@ const Seven = () => {
                       value={formData.phone}
                       onChange={handleChange}
                       className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#002E62]"
-                      placeholder="+1 (123) 456-7890"
+                      placeholder="+91 123 456 7890"
                     />
                   </div>
                   <div className="w-full md:w-1/2 px-2 mb-4">
