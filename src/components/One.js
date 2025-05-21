@@ -4,6 +4,7 @@ import { OptimizedBackgroundVideo } from '../utils/VideoOptimizer'
 // You'll need to create this poster image from a video frame
 import headerPoster from '../assets/header-poster.png'
 import mobile_video from '../assets/header_two.mp4'
+import mobile_poster from '../assets/poster_two.png'
 
 const One = () => {
   // Start with null to avoid hydration issues
@@ -62,7 +63,7 @@ const One = () => {
             {videoSrc && (
               <OptimizedBackgroundVideo
                 src={videoSrc}
-                poster={headerPoster}
+                poster={isMobile ? mobile_poster : headerPoster}
                 autoplay={true}
                 loop={true}
                 muted={true}
@@ -84,7 +85,7 @@ const One = () => {
           <h1 className='text-4xl sm:text-3xl md:text-4xl lg:text-[4rem] font-bold text-[#2566b0] md:mb-5 mb-0 mr-0 sm:mr-10 md:mr-20 lg:mr-40 text-right'>One Agency. Infinite</h1>
           <h1 className='text-5xl sm:text-3xl md:text-4xl lg:text-[4rem] font-bold text-[#b0b0b0] md:mb-5 mb-0 text-right'>Possibilities</h1>
         </div>
-        <h3 className='text-lg aligh sm:text-base font-bold md:text-lg mt-10 lg:text-[2rem] text-[2c1a47]'>From UGC to digital marketing <br/> we bring your vision to life.</h3>
+        <h3 className='text-lg pb-5 sm:text-base font-bold md:text-lg mt-10 lg:text-[2rem] text-[2c1a47]'>From UGC to digital marketing <br/> we bring your vision to life.</h3>
       </div>
     </>
   )
