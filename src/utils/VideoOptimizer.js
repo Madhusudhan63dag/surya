@@ -128,7 +128,8 @@ export const OptimizedBackgroundVideo = ({
   autoplay = true,
   loop = true,
   muted = true,
-  isPriority = false // Added priority prop
+  isPriority = false, // Added priority prop
+  onLoadedData, // Added onLoadedData prop
 }) => {
   const { videoRef, isLoaded, videoProps } = useOptimizedVideo({
     src,
@@ -171,6 +172,7 @@ export const OptimizedBackgroundVideo = ({
           opacity: isLoaded ? 1 : 0,
           transition: 'opacity 0.5s ease'
         }}
+        onLoadedData={onLoadedData} // Attach onLoadedData handler
       />
     </div>
   );

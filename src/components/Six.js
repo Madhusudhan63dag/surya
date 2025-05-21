@@ -6,8 +6,8 @@ import videoPoster from '../assets/website/website-poster.jpeg'
 
 const Six = () => {
   return (
-    <div id="website-technology" className="overflow-x-hidden">
-        <section className="relative w-full" style={{ contentVisibility: 'auto', containIntrinsicSize: '50vh md:70vh' }}>
+    <div id="website-technology" className="overflow-x-hidden overflow-y-hidden">
+        <section className="relative w-full" style={{ contentVisibility: 'auto', containIntrinsicSize: '60vh md:70vh' }}>
           <OptimizedBackgroundVideo src={video} poster={videoPoster} className="w-full h-full" containerStyle={{ height: '50vh', '@media (min-width: 768px)': { height: '70vh' } }}/>
           <div className='absolute inset-0 flex items-center justify-center z-10 bg-black bg-opacity-50 text-white p-4 md:p-8'></div>
           {/* Content overlay */}
