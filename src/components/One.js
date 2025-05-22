@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import header from '../assets/header.mp4'
-import { OptimizedBackgroundVideo } from '../utils/VideoOptimizer'
-// You'll need to create this poster image from a video frame
+// Remove the OptimizedBackgroundVideo import
 import headerPoster from '../assets/header-poster.png'
 import mobile_video from '../assets/header_two.mp4'
 import mobile_poster from '../assets/poster_two.png'
@@ -11,6 +10,7 @@ const One = () => {
   const [videoSrc, setVideoSrc] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const videoRef = useRef(null);
   
   useEffect(() => {
     // Set loading to true on component mount
@@ -21,7 +21,8 @@ const One = () => {
       const mobile = window.innerWidth < 640;
       setIsMobile(mobile);
       setVideoSrc(mobile ? mobile_video : header);
-      setIsLoading(true); // Reset loading state when video source changes
+      // Don't reset loading on resize as it causes flickering
+      // Only set loading on initial mount
     };
     
     // Set initial video source
@@ -39,8 +40,28 @@ const One = () => {
   
   // Handle video loaded event
   const handleVideoLoaded = () => {
-    setIsLoading(false);
-    document.body.style.overflow = ''; // Restore scrolling when loading completes
+    // Ensure video plays after loaded
+    if (videoRef.current && videoRef.current.play) {
+      const playPromise = videoRef.current.play();
+      
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            // Video playback started successfully
+            setIsLoading(false);
+            document.body.style.overflow = ''; // Restore scrolling when loading completes
+          })
+          .catch(error => {
+            console.error("Video playback error:", error);
+            // Still hide loader even if autoplay fails
+            setIsLoading(false);
+            document.body.style.overflow = '';
+          });
+      }
+    } else {
+      setIsLoading(false);
+      document.body.style.overflow = '';
+    }
   };
   
   return (
@@ -61,23 +82,27 @@ const One = () => {
           <div className='h-[70vh] sm:h-[40vh] md:h-[80vh] w-screen relative'>
             <div className='absolute z-10 inset-0 bg-transparent md:bg-black opacity-20'></div>
             {videoSrc && (
-              <OptimizedBackgroundVideo
-                src={videoSrc}
-                poster={isMobile ? mobile_poster : headerPoster}
-                autoplay={true}
-                loop={true}
-                muted={true}
-                isPriority={true}
-                key={isMobile ? "mobile" : "desktop"}
-                onLoadedData={handleVideoLoaded}
-                containerStyle={{
-                  height: '100%',
-                  width: '100%'
-                }}
-                videoStyle={{
-                  objectFit: isMobile ? '' : 'cover'
-                }}
-              />
+              <div className="h-full w-full">
+                <video
+                  ref={videoRef}
+                  src={videoSrc}
+                  poster={isMobile ? mobile_poster : headerPoster}
+                  autoPlay
+                  playsInline
+                  loop
+                  muted
+                  onLoadedData={handleVideoLoaded}
+                  className="h-full w-full"
+                  style={{
+                    objectFit: isMobile ? '' : 'cover',
+                    width: '100%',
+                    height: '100%',
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                  }}
+                />
+              </div>
             )}
           </div>
         </div>

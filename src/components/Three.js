@@ -9,7 +9,8 @@ import video6 from '../assets/video/video6.mp4'
 import video7 from '../assets/video/video7.mp4'
 import video8 from '../assets/video/video8.mp4'
 import video9 from '../assets/video/video9.mp4'
-import { OptimizedBackgroundVideo } from '../utils/VideoOptimizer'
+// Update the import to use the renamed hook
+import { useDebugVideoContext } from '../context/VideoLoadingContext'
 
 // Import poster images for videos
 import mainPoster from '../assets/video/main-poster.jpeg'
@@ -29,6 +30,10 @@ const Three = () => {
   const [isPaused, setIsPaused] = useState(false);
   const observerRef = useRef(null);
   const containerRef = useRef(null);
+  const mainVideoRef = useRef(null);
+  
+  // Debug the video context to ensure it's working (use the renamed hook)
+  const videoContext = useDebugVideoContext();
   
   // Video data array with posters
   const videos = [
@@ -82,6 +87,36 @@ const Three = () => {
     }
   }, [isPaused]);
   
+  // Handle main video loading and playback
+  useEffect(() => {
+    if (mainVideoRef.current) {
+      const playVideo = () => {
+        const playPromise = mainVideoRef.current.play();
+        
+        if (playPromise !== undefined) {
+          playPromise.catch(error => {
+            console.error("Main video playback error:", error);
+            
+            // Try again with user interaction
+            document.addEventListener('click', () => {
+              mainVideoRef.current?.play();
+            }, { once: true });
+          });
+        }
+      };
+      
+      // Try to play immediately
+      playVideo();
+      
+      // Also try on load
+      mainVideoRef.current.addEventListener('loadeddata', playVideo);
+      
+      return () => {
+        mainVideoRef.current?.removeEventListener('loadeddata', playVideo);
+      };
+    }
+  }, [mainVideoRef.current]);
+  
   // Calculate animation duration based on number of videos
   const animationDuration = videos.length * 20; // 20 seconds per video
 
@@ -101,21 +136,19 @@ const Three = () => {
               </p>
             </div>
             
-            {/* Optimized main video - full width on mobile, half on desktop */}
+            {/* Standard video element for main video */}
             <div className='w-full md:w-1/2 relative h-[40vh] md:h-full'>
               <div className='absolute bg-[#ffffff7d] top-0 left-0 w-full h-full' style={{zIndex: 1}}></div>
-              <OptimizedBackgroundVideo
+              <video
+                ref={mainVideoRef}
                 src={main}
                 poster={mainPoster}
-                autoplay={true}
-                loop={true}
-                muted={true}
+                autoPlay
+                playsInline
+                loop
+                muted
                 className="w-full h-full object-cover"
-                containerStyle={{
-                  width: '100%',
-                  height: '100%'
-                }}
-                videoStyle={{
+                style={{
                   width: '100%',
                   height: '100%',
                   objectFit: 'cover'
@@ -125,7 +158,7 @@ const Three = () => {
           </div>
         </div>
         
-        {/* Video Slides - OPTIMIZED SECTION */}
+        {/* Video Slides */}
         <div className="py-4 md:py-8 flex-grow" ref={containerRef}>
           <div className="container mx-auto px-2 md:px-4 h-full">
             {/* Custom Slider */}
@@ -162,18 +195,15 @@ const Three = () => {
                            padding: 0,
                            borderRadius: 0
                          }}>
-                      <OptimizedBackgroundVideo
+                      <video
                         src={video.src}
                         poster={video.poster}
-                        autoplay={true}
-                        loop={true}
-                        muted={true}
+                        autoPlay
+                        playsInline
+                        loop
+                        muted
                         className="w-full h-full object-cover"
-                        containerStyle={{
-                          width: '100%',
-                          height: '100%'
-                        }}
-                        videoStyle={{
+                        style={{
                           width: '100%',
                           height: '100%',
                           objectFit: 'cover'
