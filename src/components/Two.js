@@ -116,7 +116,8 @@ const Two = () => {  const [currentSlide, setCurrentSlide] = useState(0);
 
   return (
     <div id='ugc'>
-      <div className='mt-10 flex flex-col '>      {/* Mobile View with Slider */}
+      <div className='mt-10 flex flex-col '>
+        {/* Mobile View with Slider */}
         {isMobile ? (
           <div className='relative h-[60vh] px-4'>
             <div 
@@ -184,7 +185,8 @@ const Two = () => {  const [currentSlide, setCurrentSlide] = useState(0);
               ))}
             </div>
           </div>
-        ) : (        /* Desktop View - Original Layout */
+        ) : (        
+          /* Desktop View - Original Layout */
           <div className='h-[90vh] flex flex-nowrap gap-3 lg:gap-6 xl:gap-10 overflow-x-hidden'>
             <div className='pl-4 md:pl-6 lg:pl-10'>
               <div className='h-full w-[22vw] lg:w-[25vw]'>
@@ -226,12 +228,20 @@ const Two = () => {  const [currentSlide, setCurrentSlide] = useState(0);
             </div>
           </div>
         )}
-          {/* Text content - Responsive for both mobile and desktop */}
-        <div className='min-h-[30vh] px-4 md:px-10 mt-6 md:mt-10 max-w-7xl mx-auto'>
-          <h1 className='text-2xl md:text-3xl lg:text-4xl font-bold text-black mb-4 md:mb-6'>Everything You Need to Know About UGC – Simplified.</h1>
-          <h3 className='text-md md:text-lg w-full md:w-[85%] lg:w-[70%] leading-relaxed'>
-            At Surya Media, we offer complete end-to-end UGC solutions designed to boost your brand's authenticity and performance. From sourcing creators and writing engaging scripts to producing high-quality content like product reviews, unboxing videos, testimonials, lifestyle photography, and voiceover-style ads — we handle it all. We also take care of editing and optimizing content for social platforms like Reels, TikTok, and YouTube Shorts, while managing usage rights, influencer whitelisting, and A/B testing for maximum ROI. Whether you need a full campaign strategy, help with community engagement, or simply want scroll-stopping content that converts, we've got you covered.
-          </h3>
+        
+        {/* Text content - Improved desktop alignment and readability */}
+        <div className='min-h-[30vh] px-4 sm:px-8 md:px-12 lg:px-20 xl:px-32 py-12 mt-6 md:mt-16 bg-gray-50'>
+          <div className='max-w-7xl mx-auto'>
+            <h1 className='text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-black mb-4 md:mb-8 max-w-4xl mx-auto text-center'>
+              Everything You Need to Know About UGC – Simplified.
+            </h1>
+            <div className='w-20 h-1 bg-[#f26522] mx-auto mb-6 md:mb-10'></div>
+            <h3 className='text-md md:text-lg lg:text-xl leading-relaxed max-w-3xl mx-auto text-center md:text-left lg:text-center'>
+              At Surya Media, we offer complete end-to-end UGC solutions designed to boost your brand's authenticity and performance. From sourcing creators and writing engaging scripts to producing high-quality content like product reviews, unboxing videos, testimonials, lifestyle photography, and voiceover-style ads — we handle it all. 
+              <br/><br/>
+              We also take care of editing and optimizing content for social platforms like Reels, TikTok, and YouTube Shorts, while managing usage rights, influencer whitelisting, and A/B testing for maximum ROI. Whether you need a full campaign strategy, help with community engagement, or simply want scroll-stopping content that converts, we've got you covered.
+            </h3>
+          </div>
         </div>
       </div>
     </div>
