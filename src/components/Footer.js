@@ -1,6 +1,7 @@
 import React from 'react'
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa'
 import logo from '../assets/logo.png'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
   // Smooth scroll to section function
@@ -30,6 +31,8 @@ const Footer = () => {
               <li><a onClick={() => scrollToSection('digital-marketing')} className="text-gray-300 hover:text-white transition duration-300 cursor-pointer">Digital Marketing</a></li>
               <li><a onClick={() => scrollToSection('website-technology')} className="text-gray-300 hover:text-white transition duration-300 cursor-pointer">Website & Technology</a></li>
               <li><a onClick={() => scrollToSection('contact-us')} className="text-gray-300 hover:text-white transition duration-300 cursor-pointer">Contact Us</a></li>
+              <li><Link to="/privacy-policy" className="text-gray-300 hover:text-white transition duration-300">Privacy Policy</Link></li>
+              <li><Link to="/terms-and-conditions" className="text-gray-300 hover:text-white transition duration-300">Terms & Conditions</Link></li>
             </ul>
           </div>
 
@@ -61,7 +64,17 @@ const Footer = () => {
       </div>
       
       <div className="border-t border-gray-600 mt-8 pt-6 container mx-auto px-4">
-        <p className="text-gray-400 text-center">&copy; {new Date().getFullYear()} Surya Media. All rights reserved.</p>
+        <div className="flex flex-col md:flex-row justify-between items-center">
+          <p className="text-gray-400 text-center md:text-left">&copy; {new Date().getFullYear()} Surya Media. All rights reserved.</p>
+          <div className="flex mt-4 md:mt-0 space-x-4">
+            <Link to="/privacy-policy" className="text-gray-300 hover:text-white transition duration-300 font-medium underline">
+              Privacy Policy
+            </Link>
+            <Link to="/terms-and-conditions" className="text-gray-300 hover:text-white transition duration-300 font-medium underline">
+              Terms & Conditions
+            </Link>
+          </div>
+        </div>
       </div>
     </footer>
   )

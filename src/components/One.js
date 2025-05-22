@@ -10,6 +10,7 @@ const One = () => {
   const [videoSrc, setVideoSrc] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [animationComplete, setAnimationComplete] = useState(false);
   const videoRef = useRef(null);
   
   useEffect(() => {
@@ -78,7 +79,23 @@ const One = () => {
       
       <div className={`overflow-hidden transition-opacity duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>  
         <div id='home'>
-          <h1 className='text-5xl sm:text-5xl md:text-6xl lg:text-[7rem] relative bottom-0 lg:-bottom-2 md:-bottom-4 font-bold text-[#2566b0] mt-0 pt-0 py-5 md:py-0 px-4 text-left'>SURYA MEDIA</h1>
+          {/* Enhanced animated title */}
+          <div className="relative overflow-hidden py-5 md:py-0 px-4">
+            <h1 className="fancy-title text-5xl sm:text-5xl md:text-6xl lg:text-[7rem] font-bold mt-0 pt-0 relative z-10">
+              <span className="inline-block animate-char">S</span>
+              <span className="inline-block animate-char">U</span>
+              <span className="inline-block animate-char">R</span>
+              <span className="inline-block animate-char">Y</span>
+              <span className="inline-block animate-char">A</span>
+              <span className="inline-block animate-char">&nbsp;</span>
+              <span className="inline-block animate-char">M</span>
+              <span className="inline-block animate-char">E</span>
+              <span className="inline-block animate-char">D</span>
+              <span className="inline-block animate-char">I</span>
+              <span className="inline-block animate-char">A</span>
+            </h1>
+          </div>
+          
           <div className='h-[70vh] sm:h-[40vh] md:h-[80vh] w-screen relative'>
             <div className='absolute z-10 inset-0 bg-transparent md:bg-black opacity-20'></div>
             {videoSrc && (
@@ -112,6 +129,65 @@ const One = () => {
         </div>
         <h3 className='text-lg pb-5 sm:text-base font-bold md:text-lg mt-10 lg:text-[2rem] text-[2c1a47]'>From UGC to digital marketing <br/> we bring your vision to life.</h3>
       </div>
+      
+      {/* Enhanced animation styles */}
+      <style jsx>{`
+        .fancy-title {
+          perspective: 1000px;
+        }
+        
+        .animate-char {
+          animation: wave-animation 2.5s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite, 
+                     color-shift 5s linear infinite;
+          transform-origin: center bottom;
+          display: inline-block;
+        }
+        
+        @keyframes wave-animation {
+          0% {
+            transform: translateY(0) rotateX(0);
+            color: #2566b0;
+          }
+          25% {
+            transform: translateY(-15px) rotateX(20deg);
+            color: #3577c0;
+          }
+          50% {
+            transform: translateY(0) rotateX(0);
+            color: #2566b0;
+          }
+          75% {
+            transform: translateY(5px) rotateX(-10deg);
+            color: #1c4f8c;
+          }
+          100% {
+            transform: translateY(0) rotateX(0);
+            color: #2566b0;
+          }
+        }
+        
+        @keyframes color-shift {
+          0%, 100% {
+            text-shadow: 0 0 8px rgba(37, 102, 176, 0.3);
+          }
+          50% {
+            text-shadow: 0 0 15px rgba(37, 102, 176, 0.6);
+          }
+        }
+        
+        /* Add staggered delays to each character */
+        .animate-char:nth-child(1) { animation-delay: 0.0s; }
+        .animate-char:nth-child(2) { animation-delay: 0.1s; }
+        .animate-char:nth-child(3) { animation-delay: 0.2s; }
+        .animate-char:nth-child(4) { animation-delay: 0.3s; }
+        .animate-char:nth-child(5) { animation-delay: 0.4s; }
+        .animate-char:nth-child(6) { animation-delay: 0.5s; }
+        .animate-char:nth-child(7) { animation-delay: 0.6s; }
+        .animate-char:nth-child(8) { animation-delay: 0.7s; }
+        .animate-char:nth-child(9) { animation-delay: 0.8s; }
+        .animate-char:nth-child(10) { animation-delay: 0.9s; }
+        .animate-char:nth-child(11) { animation-delay: 1.0s; }
+      `}</style>
     </>
   )
 }
