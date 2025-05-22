@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import one from '../assets/ugc/one.mp4'
-import two from '../assets/ugc/two.jpeg'
+import two from '../assets/ugc/two.png'
 import three from '../assets/ugc/three.mp4'
 import four from '../assets/ugc/four.mp4'
 import five from '../assets/ugc/five.webp'
@@ -195,7 +195,7 @@ const Two = () => {  const [currentSlide, setCurrentSlide] = useState(0);
               </div>
             </div>
             <div className='flex h-full flex-col items-start gap-6 lg:gap-10'>
-              <div className='h-1/2 flex flex-col justify-start items-start'>
+              <div className=' flex flex-col justify-start items-start'>
                 <img src={two} alt="UGC content preview" className='w-[14vw] object-cover rounded-lg' />
               </div>
               <div className='h-1/2 flex flex-col justify-end'>

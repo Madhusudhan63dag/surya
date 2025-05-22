@@ -13,7 +13,7 @@ import video9 from '../assets/video/video9.mp4'
 import { useDebugVideoContext } from '../context/VideoLoadingContext'
 
 // Import poster images for videos
-import mainPoster from '../assets/video/main-poster.jpeg'
+import mainPoster from '../assets/video/main-poster.jpg'
 import video1Poster from '../assets/video/video1-poster.jpeg'
 import video2Poster from '../assets/video/video2-poster.jpeg'
 import video3Poster from '../assets/video/video3-poster.jpeg'
@@ -30,9 +30,8 @@ const Three = () => {
   const [isPaused, setIsPaused] = useState(false);
   const observerRef = useRef(null);
   const containerRef = useRef(null);
-  const mainVideoRef = useRef(null);
   
-  // Debug the video context to ensure it's working (use the renamed hook)
+  // Debug the video context to ensure it's working
   const videoContext = useDebugVideoContext();
   
   // Video data array with posters
@@ -87,36 +86,6 @@ const Three = () => {
     }
   }, [isPaused]);
   
-  // Handle main video loading and playback
-  useEffect(() => {
-    if (mainVideoRef.current) {
-      const playVideo = () => {
-        const playPromise = mainVideoRef.current.play();
-        
-        if (playPromise !== undefined) {
-          playPromise.catch(error => {
-            console.error("Main video playback error:", error);
-            
-            // Try again with user interaction
-            document.addEventListener('click', () => {
-              mainVideoRef.current?.play();
-            }, { once: true });
-          });
-        }
-      };
-      
-      // Try to play immediately
-      playVideo();
-      
-      // Also try on load
-      mainVideoRef.current.addEventListener('loadeddata', playVideo);
-      
-      return () => {
-        mainVideoRef.current?.removeEventListener('loadeddata', playVideo);
-      };
-    }
-  }, [mainVideoRef.current]);
-  
   // Calculate animation duration based on number of videos
   const animationDuration = videos.length * 20; // 20 seconds per video
 
@@ -131,27 +100,25 @@ const Three = () => {
               <h1 className='text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-[#b0b0b0] leading-tight'>
                 End-to-End Video Production That Tells Your Brand Story
               </h1>
-              <p className='text-[#f26522] text-lg md:text-xl mt-3'>
+              <p className='text-[#f26522] text-lg md:text-xl mt-3 w-[90%]'>
                 From TV commercials to TikToks, we create high-impact videos that engage, convert, and elevate your brand across every platform
               </p>
             </div>
             
-            {/* Standard video element for main video */}
+            {/* Replace video with just the poster image */}
             <div className='w-full md:w-1/2 relative h-[40vh] md:h-full'>
               <div className='absolute bg-[#ffffff7d] top-0 left-0 w-full h-full' style={{zIndex: 1}}></div>
-              <video
-                ref={mainVideoRef}
-                src={main}
-                poster={mainPoster}
-                autoPlay
-                playsInline
-                loop
-                muted
-                className="w-full h-full object-cover"
+              <img
+                src={mainPoster}
+                alt="Video Production"
+                className="w-full h-full object-cover rounded-lg"
                 style={{
                   width: '100%',
                   height: '100%',
-                  objectFit: 'cover'
+                  objectFit: 'cover',
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
                 }}
               />
             </div>
